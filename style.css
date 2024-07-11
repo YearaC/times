@@ -1,91 +1,100 @@
-.head-line{
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .head-line {
     margin-top: 1em;
     display: flex;
     justify-content: center;
-}
+  }
+  
+  .head-line svg {
+    width: 100%;
+    max-width: 430px;
+  }
 
-.head-line svg{
-    width: 430px;
-}
-
-.menus{
+  .menus {
     margin-top: 1em;
     display: flex;
     justify-content: center;
-    flex-wrap:wrap;
+    flex-wrap: wrap;
     border-top: 1px solid #ebebeb;
     border-bottom: 4px double black;
-}
-
-.menus button{
+  }
+  
+  .menus button {
     border: none;
-    background:none;
+    background: none;
     margin: 5px;
-}
-
-.menus button:hover{
-    background-color: beige;
-}
-
-.news-img-size{
-    max-width: 100%; 
-    max-height: 250px;
-
-}
-
-.news{
-    border-bottom: 2px solid black;
-    padding-bottom: 1em;
-    padding-top: 1em;
- 
-}
-
-.search-icon{
-    padding: 8px 9px 9px;
-    font-weight: 900;
-}
-
-
-.search-icon:hover{
-    background-color: rgb(247, 247, 247);
-
-}
-
-.search-bar{
-    display: flex;
-}
-
-#search-input{
-    border: 1px solid rgb(226, 226, 226);
-border-radius: 3px;
-height: 33px;
-
-}
-
-.search-button{
-    background-color: rgb(86, 123, 149);
-    border: 1px solid rgb(50, 104, 145);
-    color: rgb(255, 255, 255);
-    height: 33px;
-    border-radius: 3px;
-
-}
-
-.search-right{
-    display: none;
-}
-
-/* hamburger-icon */
-.hamburger-icon {
-    display: none;
     cursor: pointer;
-    font-weight: 900;
-    font-size: 20px;
-
-}
-
-
-.sidenav {
+    font-size: 16px;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .menus button:hover {
+    background-color: beige;
+  }
+  
+  
+  
+  /* Search Bar  */
+  .search-bar {
+    display: flex;
+    align-items: center;
+    margin-top: 1em;
+  }
+  
+  .search-icon {
+    padding: 8px 9px 9px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: #f7f7f7;
+    transition: background-color 0.3s ease;
+  }
+  
+  .search-icon:hover {
+    background-color: #eee;
+  }
+  
+  #search-input {
+    border: 1px solid #e2e2e2;
+    border-radius: 3px;
+    height: 33px;
+    padding: 0 10px;
+  }
+  
+  .search-button {
+    background-color: #567b95;
+    color: #fff;
+    border: 1px solid #326891;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-left: 5px;
+    padding: 0 15px;
+    height: 33px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .search-button:hover {
+    background-color: #326891;
+  }
+  
+  .search-right {
+    display: none;
+  }
+  
+  /* Sidebar*/
+  .sidenav {
     height: 100%;
     width: 0;
     position: fixed;
@@ -99,9 +108,9 @@ height: 33px;
   }
   
   .sidenav a {
-    padding: 8px 8px 8px 32px;
+    padding: 10px 15px;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 18px;
     color: #818181;
     display: block;
     transition: 0.3s;
@@ -117,24 +126,103 @@ height: 33px;
     right: 25px;
     font-size: 36px;
     margin-left: 50px;
+    cursor: pointer;
   }
 
+  /* news */
+.news {
+    border-bottom: 2px solid #ccc;
+    padding: 1em 0; 
+}
 
 
-@media (max-width: 992px) {
-    .menus{
-        display: none;
+.news h2 {
+    font-size: 1.5em; 
+    margin-top: 0.5em; 
+    color: #333; 
+}
+
+.news p {
+    color: #666; 
+    line-height: 1.4; 
+}
+
+
+.news div {
+    color: #999; 
+    margin-top: 0.5em; 
+    font-size: 0.9em; 
+}
+
+
+.news-img-size {
+    max-width: 100%;
+    max-height: 200px; 
+    object-fit: cover;
+}
+
+
+
+
+/* input  */
+.input-field {
+    padding: 0.5em;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px; 
+    margin-right: 10px; 
+}
+
+/* button */
+.btn {
+    padding: 0.5em;
+    font-size: 1em;
+    background-color: #ccc; 
+    color: #fff; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; 
+   max-height: 2em;
+}
+
+
+.btn:hover {
+    background-color: burlywood; 
+}
+
+  
+  /* Hamburger */
+  .hamburger-icon {
+    display: none;
+    cursor: pointer;
+    font-size: 24px;
+    margin-right: 10px;
+    transition: color 0.3s ease;
+  }
+  
+  .hamburger-icon:hover {
+    color: #567b95;
+  }
+  
+
+  @media (max-width: 992px) {
+    .menus {
+      display: none;
     }
   
     .hamburger-icon {
-        display: block;
+      display: block;
     }
-   
- }
-
- @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
   }
-
- 
+  
+  @media screen and (max-height: 450px) {
+    .sidenav {
+      padding-top: 15px;
+    }
+    .sidenav a {
+      font-size: 16px;
+    }
+  }
+  

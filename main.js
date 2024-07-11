@@ -1,88 +1,76 @@
-//search-icon을 클릭하면 search-bar가 나온다 > 다시 search -icon을 누르면 검색창이 사라진다.
-//media query max screen 992px 이면 search-icon이 사라지고
-// search-icon이 햄버거 아이콘으로 바뀐다
 
-//햄버거 아이콘 클릭시 사이드 메뉴가 나온다 > 다시 햄버거 아이콘 누르면 사이드 메뉴가 들어간다
-
-
-
-
-
-//const API_KEY = `41109769dcc64e81a99117924af22df3`
+//const API_KEY = `41109769dcc64e81a99117924af22df3`;
 
 let newsList = [];
-const getLatestNews = async () => {
 
-   const url = new URL(`https://playful-kangaroo-f139ee.netlify.app/top-headlines`)
+let searchIcon = document.getElementById("search-icon");
+let searchRight = document.getElementById("search-right");
+let searchInput = document.getElementById("search-input");
+let url = new URL (`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines`)
+
+const menus = document.querySelectorAll(".menus button")
+menus.forEach(menu => menu.addEventListener("click", (event) => getNewsByCategory(event)))
+
+
+
+searchIcon.addEventListener("click", toggleSearch);
+searchInput.addEventListener("focus", function () { searchInput.value = ""; })
+
+searchInput.addEventListener("keyup", function (event) {
+    if (event.key === "Enter") {
+        getNewsByKeyword();
+    }
+});
+
+const getNews =async () =>{
     const response = await fetch(url);
     const data = await response.json();
     newsList = data.articles;
-    render()
-    console.log("rrr",newsList);
-};
+    render();
+
+}
+
+
+
+const getLatestNews = async () => {
+
+    url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines`);
+    
+    getNews()
+}
 
 getLatestNews();
 
 
-
-let searchIcon = document.getElementById("search-icon");
-let searchRight = document.getElementById("search-right");
-
-
-searchIcon.addEventListener ("click", toggleSearch);
-
-function toggleSearch(){
+const getNewsByCategory = async (event) => {
+    const category = event.target.textContent.toLowerCase()//newsapl 공홈가면 소문자로 되어있으니까 소문자로 바꿔줌
     
-    if (searchRight.style.display === "none" || searchRight.style.display === "") {
-        searchRight.style.display = "block";
-    } else{
-        searchRight.style.display = "none";
-        searchIcon.style.display = 'block';
-    }
+    url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?category=${category}`)
+    getNews()
 }
 
-/*
-//media query max screen 992px 이면 search-icon이 사라지고
-// search-icon이 햄버거 아이콘으로 바뀐다
 
-function init() {
-
-    if (window.innerWidth <= 992) {
-        searchIcon.style.display = 'none';
-    } else {
-        searchIcon.style.display = 'block';
-    }
+const getNewsByKeyword = async () => {
+    const keyword = document.getElementById("search-input").value;
+    
+    url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?q=${keyword}`);
+    getNews()
 }
 
-// 윈도우 크기 변경 이벤트 리스너 추가
-window.addEventListener('resize', function() {
-    
-    if (window.innerWidth <= 992) {
-        searchIcon.style.display = 'none';
-    } else {
-        searchIcon.style.display = 'block';
-    }
-});
-
-// 페이지 로드 시 초기화 함수 실행
-window.onload = init;
-*/
-
-//hamburger icon side nav
 function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
-    
-  }
-  
-  function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-   
-  }
 
-  const render = () => {
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+
+}
+
+const render = () => {
     const newsHTML = newsList.map((news) => {
-        let description = news.description ? 
-        (news.description.length > 60 ? news.description.slice(0, 60) + '…' : news.description) : '내용없음';
+        let description = news.description ?
+            (news.description.length > 60 ? news.description.slice(0, 60) + '…' : news.description) : '내용없음';
 
 
         return `<div class="row news">
@@ -102,10 +90,16 @@ function openNav() {
 
 
 
+function toggleSearch() {
 
-
+    if (searchRight.style.display === "none" || searchRight.style.display === "") {
+        searchRight.style.display = "block";
+    } else {
+        searchRight.style.display = "none";
+        searchIcon.style.display = 'block';
+    }
+}
 /*
-
 const API_KEY = `41109769dcc64e81a99117924af22df3`
 let newsList = [];
 const getLatestNews = async () => {
