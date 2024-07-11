@@ -35,12 +35,15 @@ function toggleSearch(){
     
     if (searchRight.style.display === "none" || searchRight.style.display === "") {
         searchRight.style.display = "block";
-    } else {
+    } else{
         searchRight.style.display = "none";
+        searchIcon.style.display = 'block';
     }
-    
 }
 
+/*
+//media query max screen 992px 이면 search-icon이 사라지고
+// search-icon이 햄버거 아이콘으로 바뀐다
 
 function init() {
 
@@ -63,7 +66,7 @@ window.addEventListener('resize', function() {
 
 // 페이지 로드 시 초기화 함수 실행
 window.onload = init;
-
+*/
 
 //hamburger icon side nav
 function openNav() {
@@ -89,7 +92,7 @@ function openNav() {
             <div class="col-lg-8">
                 <h2>${news.title}</h2>
                 <p>${description}</p>
-                <div> ${news.source.name == null || news.source.name == '' ? 'no source' : news.source.name} * ${news.publishedAt} * ${news.publishedAt}</div>
+                <div>${news.source.name} - ${moment(news.publishedAt).fromNow()} </div>
             </div>
         </div>`;
     }).join("");

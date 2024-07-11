@@ -78,8 +78,10 @@ height: 33px;
 /* hamburger-icon */
 .hamburger-icon {
     display: none;
-    font-size: 30px;
     cursor: pointer;
+    font-weight: 900;
+    font-size: 20px;
+
 }
 
 
@@ -123,9 +125,7 @@ height: 33px;
     .menus{
         display: none;
     }
-    .search-icon{
-        display: none;
-    }
+  
     .hamburger-icon {
         display: block;
     }
