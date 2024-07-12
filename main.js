@@ -6,11 +6,14 @@ let newsList = [];
 let searchIcon = document.getElementById("search-icon");
 let searchRight = document.getElementById("search-right");
 let searchInput = document.getElementById("search-input");
-let url = new URL (`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines`)
+let url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines`)
 
-const menus = document.querySelectorAll(".menus button")
-menus.forEach(menu => menu.addEventListener("click", (event) => getNewsByCategory(event)))
+const sidenavLinks = document.querySelectorAll(".sidenav a:not(.closebtn)");
 
+sidenavLinks.forEach(link => link.addEventListener("click", (event) => {
+    closeNav();
+    getNewsByCategory(event);
+}));
 
 
 searchIcon.addEventListener("click", toggleSearch);
@@ -22,7 +25,7 @@ searchInput.addEventListener("keyup", function (event) {
     }
 });
 
-const getNews =async () =>{
+const getNews = async () => {
     const response = await fetch(url);
     const data = await response.json();
     newsList = data.articles;
@@ -35,7 +38,7 @@ const getNews =async () =>{
 const getLatestNews = async () => {
 
     url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines`);
-    
+
     getNews()
 }
 
@@ -44,7 +47,7 @@ getLatestNews();
 
 const getNewsByCategory = async (event) => {
     const category = event.target.textContent.toLowerCase()//newsapl 공홈가면 소문자로 되어있으니까 소문자로 바꿔줌
-    
+
     url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?category=${category}`)
     getNews()
 }
@@ -52,7 +55,7 @@ const getNewsByCategory = async (event) => {
 
 const getNewsByKeyword = async () => {
     const keyword = document.getElementById("search-input").value;
-    
+
     url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?q=${keyword}`);
     getNews()
 }
