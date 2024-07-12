@@ -39,7 +39,7 @@ const getLatestNews = async () => {
 
     url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines`);
 
-    getNews()
+    await getNews()
 }
 
 getLatestNews();
@@ -49,7 +49,7 @@ const getNewsByCategory = async (event) => {
     const category = event.target.textContent.toLowerCase()//newsapl 공홈가면 소문자로 되어있으니까 소문자로 바꿔줌
 
     url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?category=${category}`)
-    getNews()
+    await getNews()
 }
 
 
@@ -57,7 +57,7 @@ const getNewsByKeyword = async () => {
     const keyword = document.getElementById("search-input").value;
 
     url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?q=${keyword}`);
-    getNews()
+    await getNews()
 }
 
 function openNav() {
