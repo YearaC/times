@@ -26,10 +26,29 @@ searchInput.addEventListener("keyup", function (event) {
 });
 
 const getNews = async () => {
-    const response = await fetch(url);
-    const data = await response.json();
-    newsList = data.articles;
-    render();
+    try{ 
+        const response = await fetch(url);
+       
+        const data = await response.json();
+        if(response.status === 200){
+            if (data.articles.length === 0){
+                throw new Error("No result for this search")
+            }
+
+            newsList=data.articles
+            render()
+        }else{
+            throw new Error(data.message)
+        }
+        
+        
+
+    }catch(error){
+        
+        errorRender(error.message)
+
+    }
+    
 
 }
 
@@ -73,7 +92,8 @@ function closeNav() {
 const render = () => {
     const newsHTML = newsList.map((news) => {
         let description = news.description ?
-            (news.description.length > 60 ? news.description.slice(0, 60) + '…' : news.description) : '내용없음';
+            (news.description.length > 200 ? news.description.slice(0, 200) + '…' : news.description) : '내용없음';
+            
 
 
         return `<div class="row news">
@@ -89,6 +109,14 @@ const render = () => {
     }).join("");
 
     document.getElementById("news-board").innerHTML = newsHTML;
+}
+
+const errorRender = (errorMessage) =>{
+    const errorHTML = 
+    `<div class="alert alert-danger" role="alert">
+  ${errorMessage}
+</div>`
+document.getElementById("news-board").innerHTML=errorHTML
 }
 
 
