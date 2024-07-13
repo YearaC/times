@@ -161,6 +161,10 @@ body {
     object-fit: cover;
 }
 
+.pagination{
+    cursor: pointer;
+}
+
 
 
 
