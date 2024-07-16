@@ -201,6 +201,8 @@ const getLatestNews = async () => {
 
 getLatestNews();
 
+https://github.com/ken-do-it/javaScript_group_pro_14.git
+
 */
 
 
